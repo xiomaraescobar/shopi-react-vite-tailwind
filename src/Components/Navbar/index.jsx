@@ -1,7 +1,10 @@
+import { useContext } from "react";
+import ShoppingCartContext from '../../context'
 import { NavLink } from "react-router-dom";
 
-const Navbar = () => {
 
+const Navbar = () => {
+  const context = useContext(ShoppingCartContext);// aqui se lee el estado global
   const  activeStyle = 'underline underline-offset-4'
   return (
     <nav className="flex justify-between items-center fixed z-10  top-0 w-full py-5 px-8 text-lg font-light">
@@ -83,7 +86,7 @@ const Navbar = () => {
         <li>
           <NavLink to='./my-order' className={({ isActive })=> 
               isActive ? activeStyle : undefined
-            }>🛒 0</NavLink>
+            }>🛒 {context.count}</NavLink>
         </li>
       </ul>
     </nav>
