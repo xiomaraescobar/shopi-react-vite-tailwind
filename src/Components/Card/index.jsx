@@ -1,3 +1,4 @@
+import { PlusIcon } from '@heroicons/react/24/outline'
 import { useContext } from 'react'
 import ShoppingCartContext from '../../context'
 
@@ -12,8 +13,8 @@ const Card = (data) => {
                 <div 
                   className='absolute top-0 right-0 m-3 p-1 flex justify-center items-center bg-white w-8 h-8 rounded-full'
                   onClick={() => context.setCount(context.count + 1)}>
-                    <span className=' absolute bottom-0 font-medium text-3xl'>
-                        +
+                    <span className=' absolute '>
+                    <PlusIcon className='h-6 w-6 text-black relative bottom-0.5 right-0.5'></PlusIcon>
                     </span>
                 </div>
             </figure>
