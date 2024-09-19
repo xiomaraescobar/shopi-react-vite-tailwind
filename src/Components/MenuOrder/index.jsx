@@ -1,8 +1,8 @@
-import { XCircleIcon } from '@heroicons/react/24/outline';
+import { XCircleIcon } from '@heroicons/react/24/outline'
 import './style.css'
-import { useContext } from 'react';
+import { useContext } from 'react'
 import {Link} from 'react-router-dom'
-import ShoppingCartContext from '../../context';
+import ShoppingCartContext from '../../context'
 import OrderCard from '../OrderCard';
 import { totalPrice } from '../../utils'
 
@@ -13,6 +13,7 @@ const MenuOrder = () => {
   const handleDelete = (id) => {
     const filteredProducts = context.cartProducts.filter(product => product.id != id)
     context.setCartProducts(filteredProducts)
+    context.setCount(context.count - 1)
   }
 
   const handleCheckout = () => {
@@ -24,6 +25,8 @@ const MenuOrder = () => {
     }
     context.setOrder([...context.order, orderToAdd])
     context.setCartProducts([])
+    context.setCount(0)
+    context.closeMenuOrder()
   }
 
 
