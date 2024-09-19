@@ -9,6 +9,10 @@ const Card = (data) => {
         context.openProductDetail()
         context.setProductToShow(productDetail)
     }
+    const addProductToCard = () => {
+        context.setCount(context.count + 1)
+        context.openMenuOrder()
+    }
 
     return (
         <div className="bg-white cursor-pointer w-56 h-60 rounded-lg" onClick={() => showProduct(data.data)} >
@@ -21,7 +25,7 @@ const Card = (data) => {
                     <span className=' absolute '>
                         <PlusIcon onClick={(event) => {
                             event.stopPropagation()
-                            context.setCount(context.count + 1)
+                            addProductToCard()
                         }} className='h-6 w-6 text-black relative bottom-0.5 right-0.5'></PlusIcon>
                     </span>
                 </div>

@@ -11,7 +11,7 @@ const ProductDetail = () => {
         <div className="flex justify-between items-center p-6">
             <h2 className='font-medium text-2xl'>Details</h2>
             <div>
-                <XCircleIcon onClick={() => context.closeProductDetail()}
+                <XCircleIcon onClick = { () => context.closeProductDetail()}
                     className='h-7 w-7 text-black cursor-pointer'></XCircleIcon>
             </div>
         </div>
@@ -26,7 +26,7 @@ const ProductDetail = () => {
                 ${price}
             </span>
         </p>
-        <p>
+        <p  className='p-4   font-light text-sm'>
             <span>{description}</span>
         </p>
     </aside >
