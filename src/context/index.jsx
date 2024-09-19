@@ -1,5 +1,5 @@
 // Hooks para contador de Shopping
-import { createContext, useState } from 'react'
+import { createContext, useState, useEffect } from 'react'
 
 const ShoppingCartContext = createContext()
 
@@ -33,6 +33,21 @@ const closeMenuOrder = () => setIsCheckoutSideMenuOpen(false)
   //shopping cart . order
   const [order, setOrder] = useState([])
 
+  //get products
+  const [items, setItems] = useState(null)
+
+  //get productos by title
+  const [searchByTitle, setSearchByTitle] = useState(null)
+  console.log('searchByTitle: ', searchByTitle)
+
+  useEffect(() => {
+    //fetch('https://api.escuelajs.co/api/v1/products')
+    fetch('https://fakestoreapi.com/products')
+      .then(response => response.json())
+      .then(data => setItems(data))
+
+  }, [])
+
   return (
     <ShoppingCartContext.Provider value = {{
       count,
@@ -52,6 +67,11 @@ const closeMenuOrder = () => setIsCheckoutSideMenuOpen(false)
       closeMenuOrder,
       order,
       setOrder,
+      items,
+      setItems, 
+      searchByTitle,
+      setSearchByTitle,
+
 
     }}>
       {children}
