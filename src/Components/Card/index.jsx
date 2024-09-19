@@ -9,8 +9,9 @@ const Card = (data) => {
         context.openProductDetail()
         context.setProductToShow(productDetail)
     }
-    const addProductToCard = () => {
+    const addProductToCard = (productData) => {
         context.setCount(context.count + 1)
+        context.setCartProducts([...context.cartProducts, productData])
         context.openMenuOrder()
     }
 
@@ -25,7 +26,7 @@ const Card = (data) => {
                     <span className=' absolute '>
                         <PlusIcon onClick={(event) => {
                             event.stopPropagation()
-                            addProductToCard()
+                            addProductToCard(data.data)
                         }} className='h-6 w-6 text-black relative bottom-0.5 right-0.5'></PlusIcon>
                     </span>
                 </div>

@@ -1,7 +1,7 @@
 import { TrashIcon } from "@heroicons/react/24/outline"
 
 const OrderCard = props => {
-    const { title, imageUrl, price } = props
+const { title, imageUrl, price } = props
 return(
     <div className="flex justify-between items-center mb-3">
             <div className='flex items-center gap-2'>

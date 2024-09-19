@@ -25,7 +25,7 @@ const closeMenuOrder = () => setIsCheckoutSideMenuOpen(false)
 
 
   // Product Detail . Show Product
-  const [productToShow, setProductToShow] = useState([])
+  const [productToShow, setProductToShow] = useState({})
 
   //shopping cart .add products to cart
   const [cartProducts, setCartProducts] = useState([])
