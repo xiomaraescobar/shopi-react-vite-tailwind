@@ -35,10 +35,10 @@ const closeMenuOrder = () => setIsCheckoutSideMenuOpen(false)
 
   //get products
   const [items, setItems] = useState(null)
+  const [filteredItems, setFilteredItems] = useState('')
 
   //get productos by title
-  const [searchByTitle, setSearchByTitle] = useState(null)
-  console.log('searchByTitle: ', searchByTitle)
+  const [searchByTitle, setSearchByTitle] = useState('')
 
   useEffect(() => {
     //fetch('https://api.escuelajs.co/api/v1/products')
@@ -48,6 +48,13 @@ const closeMenuOrder = () => setIsCheckoutSideMenuOpen(false)
 
   }, [])
 
+  const filteredItemsByTitle = (items, searchByTitle) => {
+    return items?.filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
+  }
+  useEffect(() => { 
+    if (searchByTitle) {setFilteredItems(filteredItemsByTitle(items, searchByTitle))}
+  }, [items,searchByTitle])
+  
   return (
     <ShoppingCartContext.Provider value = {{
       count,
@@ -71,7 +78,7 @@ const closeMenuOrder = () => setIsCheckoutSideMenuOpen(false)
       setItems, 
       searchByTitle,
       setSearchByTitle,
-
+      filteredItems
 
     }}>
       {children}
