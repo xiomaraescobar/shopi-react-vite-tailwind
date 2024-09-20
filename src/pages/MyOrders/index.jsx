@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Layout from '../../Components/Layout'
 import ShoppingCartContext from '../../context'
 import OrdersCard from '../../Components/OrdersCard'
@@ -8,10 +8,8 @@ import OrdersCard from '../../Components/OrdersCard'
 
 function MyOrders() {
   const context = useContext(ShoppingCartContext)
-
   return (
-
-   <Layout>
+    <Layout>
       <div className='flex justify-center relative items-center w-80 mb-6'>
         <h1 className='font-bold text-2xl'>My orders</h1>
       </div>
@@ -21,6 +19,7 @@ function MyOrders() {
             <OrdersCard
               totalPrice={order.totalPrice}
               totalProducts={order.totalProducts}
+              date={order.date}
             />
           </Link>
         ))

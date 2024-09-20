@@ -85,7 +85,7 @@ const Navbar = () => {
           </NavLink>
         </li>
         <li className='flex'>
-          <ShoppingCartIcon to='./my-order' className='h-5 w-5 text-black relative top-1 right-1' />
+          <ShoppingCartIcon to='./my-order' onClick={context.openMenuOrder} className='h-5 w-5 text-black relative top-1 right-1 cursor-pointer' />
           <div> {context.count}</div>
         </li>
       </ul>

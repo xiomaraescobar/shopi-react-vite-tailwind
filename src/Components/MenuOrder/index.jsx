@@ -17,8 +17,12 @@ const MenuOrder = () => {
   }
 
   const handleCheckout = () => {
+    const currendate = () => {
+      const date = new Date().toLocaleDateString()
+      return date 
+    }
     const orderToAdd = {
-      date: '19.09.2024',
+      date: currendate(),
       products: context.cartProducts,
       totalProducts: context.cartProducts.length,
       totalPrice: totalPrice(context.cartProducts)

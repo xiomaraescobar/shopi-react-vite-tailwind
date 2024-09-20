@@ -1,11 +1,17 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import Layout from '../../Components/Layout'
 import Card from '../../Components/Card'
 import ProductDetail from '../../Components/ProductDetail'
 import ShoppingCartContext from '../../context'
+import { useLocation } from 'react-router-dom'
 
 function Home() {
   const context = useContext(ShoppingCartContext)
+
+  const location = useLocation()
+  useEffect(() => {
+    context.setSearchByTitle('')
+  }, [location])
 
   const renderView = () => {
     if (context.filteredItems?.length > 0) {
@@ -27,6 +33,7 @@ function Home() {
         <h1 className='font-bold text-2xl'>Exclusive Products</h1>
       </div>
       <input
+      value={context.searchByTitle}
         type="text"
         placeholder='Search a product'
         className='rounded-lg border border-black w-80 p-4 mb-4'

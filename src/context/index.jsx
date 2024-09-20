@@ -83,7 +83,7 @@ const closeMenuOrder = () => setIsCheckoutSideMenuOpen(false)
     if (searchByCategory && !searchByTitle) { setFiltertedItems(filterBy('BY_CATEGORY' ,items, searchByTitle ,searchByCategory)) }
     if (!searchByCategory && !searchByTitle) { setFiltertedItems(filterBy(null ,items, searchByTitle ,searchByCategory)) }
     }, [items, searchByTitle, searchByCategory])
-  
+
   return (
     <ShoppingCartContext.Provider value = {{
       count,
