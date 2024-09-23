@@ -1,13 +1,22 @@
 import { XCircleIcon } from '@heroicons/react/24/outline'
 import './style.css'
 import { useContext } from 'react'
-import {Link} from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import ShoppingCartContext from '../../context'
 import OrderCard from '../OrderCard';
 import { totalPrice } from '../../utils'
 
 const MenuOrder = () => {
   const context = useContext(ShoppingCartContext)
+  const signOut = localStorage.getItem('sign-out')
+
+  const parsedSignOut = JSON.parse(signOut)
+  const isUserSignOut = context.signOut || parsedSignOut
+  const account = localStorage.getItem('account')
+  const parsedAccount = JSON.parse(account)
+  const noAccountInLocalStorage = parsedAccount ? Object.keys(parsedAccount).length === 0 : true
+  const noAccountInLocalState = context.account ? Object.keys(context.account).length === 0 : true
+  const hasUserAnAccount = !noAccountInLocalStorage || !noAccountInLocalState
 
   //removiendo productos del carrito
   const handleDelete = (id) => {
@@ -17,20 +26,25 @@ const MenuOrder = () => {
   }
 
   const handleCheckout = () => {
-    const currendate = () => {
-      const date = new Date().toLocaleDateString()
-      return date 
+    if (hasUserAnAccount && !isUserSignOut) {
+      const currentDate = () => {
+        const date = new Date().toLocaleDateString();
+        return date
+      }
+      const orderToAdd = {
+        date: currentDate(),
+        products: context.cartProducts,
+        totalProducts: context.cartProducts.length,
+        totalPrice: totalPrice(context.cartProducts),
+      }
+      context.setOrder([...context.order, orderToAdd]);
+      context.setCartProducts([]);
+      context.setCount(0);
+      context.closeMenuOrder()
+    } else {
+      context.closeMenuOrder()
+      return <Navigate replace to={'/sign-in'} />
     }
-    const orderToAdd = {
-      date: currendate(),
-      products: context.cartProducts,
-      totalProducts: context.cartProducts.length,
-      totalPrice: totalPrice(context.cartProducts)
-    }
-    context.setOrder([...context.order, orderToAdd])
-    context.setCartProducts([])
-    context.setCount(0)
-    context.closeMenuOrder()
   }
 
 

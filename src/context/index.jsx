@@ -3,9 +3,38 @@ import { createContext, useState, useEffect } from 'react'
 
 const ShoppingCartContext = createContext()
 
+export const initializeLocalStorage = () => {
+  const accountInLocalStorage = localStorage.getItem('account')
+  const signOutInLocalStorage = localStorage.getItem('sign-out')
+
+  let parsedAccount
+  let pardedSignOut
+
+  if (!accountInLocalStorage) {
+    localStorage.setItem('account', JSON.stringify({}))
+    parsedAccount = {}
+
+  } else {
+    parsedAccount = JSON.parse(accountInLocalStorage)
+  }
+
+  if (!signOutInLocalStorage) {
+    localStorage.setItem('sign-out', JSON.stringify(false))
+    pardedSignOut = false
+  } else {
+    pardedSignOut = JSON.parse(signOutInLocalStorage)
+  } 
+}
+
 export const ShoppingCartProvider = ({ children }) => {
   // Shopping Cart . Increment Quantity
   const [count, setCount] = useState(0)
+
+  //my account
+  const [account, setAccount] = useState({})
+
+  //sign out
+  const [signOut, setSignOut] = useState(false)
   
   // Modal . Open/Close
   const [openModal, setOpenModal] = useState(false);
@@ -108,7 +137,11 @@ const closeMenuOrder = () => setIsCheckoutSideMenuOpen(false)
       searchByTitle,
       setSearchByTitle,
       filteredItems,
-      setSearchByCategory
+      setSearchByCategory,
+      account,
+      setAccount,
+      signOut,
+      setSignOut,
 
     }}>
       {children}
