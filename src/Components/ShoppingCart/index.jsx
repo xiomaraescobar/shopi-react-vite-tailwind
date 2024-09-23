@@ -6,18 +6,18 @@ import ShoppingCartContext from "../../context"
 const ShoppingCart = () => {
     const context = useContext(ShoppingCartContext)
 
-    const openCheckoutSideMenu = () => {
-        context.openCheckoutSideMenu()
+    const openCheckoutSideOrder = () => {
+        context.openMenuOrder()
     }
     return (
-        <div className="relative flex gap-.5 items-center" onClick={() => openCheckoutSideMenu()}> 
+        <div className="relative flex gap-.5 items-center" onClick={() => openCheckoutSideOrder()}>
             <ShoppingBagIcon className="w-6 h-6 fill-none stroke-black cursor-pointer" />
             <div className="absolute bottom-3.5 left-3.5 flex justify-center items-center
-             rounded-full bg-black w-5 h-5 text-sm text-white">
+            rounded-full bg-black w-5 h-5 text-sm text-white">
                 {context.cartProducts.length}
             </div>
         </div>
     )
-} 
+}
 
 export default ShoppingCart
